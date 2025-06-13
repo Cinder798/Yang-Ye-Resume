@@ -29,12 +29,12 @@ h3 {
 h4 {
   font-size: 10px;
   font-style: italic;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 p, li, div {
   font-size: 10px;
   font-style: none;
-  line-height: 1.3;
+  line-height: 1.2;
 }
 [data-testid="stSidebar"] {
     background-color: rgba(230, 245, 227, 0.85);
