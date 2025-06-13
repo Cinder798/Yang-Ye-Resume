@@ -5,7 +5,7 @@
   <title>Animated Radar</title>
   <style>
     body { margin: 0; }
-    #main { width: 90%; height: 320px; }
+    #main { width: 100%; height: 110px; }
   </style>
 </head>
 <body>
@@ -40,13 +40,9 @@
       myChart.setOption({
         radar: {
           indicator: indicators,
-          radius: '70%',
+          radius: '50%',
           axisLine: { lineStyle: { color: '#ccc' } },
-          splitLine: {
-            lineStyle: {
-              type: 'dashed'
-            }
-          }
+          splitLine: { lineStyle: { type: 'dashed' } }
         },
         series: [{
           type: 'radar',
@@ -55,11 +51,11 @@
             name: 'Skill Breath',
             symbol: 'circle',
             lineStyle: {
-              width: 3,
+              width: 2,
               type: 'dotted'
             },
             areaStyle: {
-              opacity: 0.25
+              opacity: 0.3
             }
           }]
         }]
@@ -75,7 +71,6 @@
         render();
       }, skill.delay);
     });
-
     render();
   </script>
 </body>
