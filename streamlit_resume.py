@@ -87,3 +87,48 @@ st.markdown("---")
 st.markdown("Crafted with ❤️ by Cinder using Streamlit")
 let direction = 0.005;
 setInterval(animate, 180);
+echarts_code = """
+<div id="main" style="width: 100%;height:500px;"></div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script>
+window.onload = function () {
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+
+    var base = [8, 9, 9, 8, 7, 9];
+    var scale = 1.0;
+    var direction = 0.005;
+
+    function getOption(data) {
+        return {
+            radar: {
+                indicator: [
+                    { name: 'Python', max: 10 },
+                    { name: 'NLP', max: 10 },
+                    { name: 'Academic Writing', max: 10 },
+                    { name: 'Discourse Analysis', max: 10 },
+                    { name: 'Streamlit', max: 10 },
+                    { name: 'Communication', max: 10 }
+                ]
+            },
+            series: [{
+                type: 'radar',
+                data: [{ value: data, areaStyle: {} }]
+            }]
+        };
+    }
+
+    function updateChart() {
+        scale += direction;
+        if (scale >= 1.15 || scale <= 0.85) direction *= -1;
+        var newData = base.map(x => Math.round(x * scale * 10) / 10);
+        myChart.setOption(getOption(newData));
+    }
+
+    myChart.setOption(getOption(base));
+    setInterval(updateChart, 100);
+};
+</script>
+"""
+st.components.v1.html(echarts_code, height=520)
+
