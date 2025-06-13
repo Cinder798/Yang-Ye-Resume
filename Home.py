@@ -59,8 +59,7 @@ st.sidebar.markdown("[LinkedIn](https://linkedin.com/in/yourprofile)")
 st.sidebar.markdown("😼[My NLP Model-CC Kitty](https://6p8qtwfeqmwsvarblnx67m.streamlit.app/)")
 
 st.markdown("## 🌸 Welcome to Ye Yang's Dynamic Resume")
-st.markdown("*'Only THE ONE exists over time. 在无穷中，仅一息尚存，其余皆溃败于时间.'*”)
-st.markdown("*'                 ——An NLP Research Enthusiast bridging cultures, codes, and cognition.'*")
+st.markdown("*'Only THE ONE exists over time. 在无穷中，仅一息尚存，其余皆溃败于时间. /n——An NLP Research Enthusiast bridging cultures, codes, and cognition.'*")
 
 st.markdown("### 👑 Education & Work")
 st.markdown("""
