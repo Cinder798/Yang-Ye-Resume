@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import json
 
-st.set_page_config(page_title="Ye Yang Resume", layout="wide")
+st.set_page_config(page_title="Ye Yang Resume", layout="center")
 
 with st.sidebar:
     image = Image.open("profile.jpg")
