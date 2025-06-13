@@ -16,7 +16,7 @@ h1 {
   line-height: 1.5;
 }
 h2 {
-  font-size: 14px;
+  font-size: 5px;
   font-weight: bold;
   line-height: 1.5;
 }
