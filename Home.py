@@ -8,32 +8,32 @@ st.set_page_config(page_title="Home", layout="wide")
 st.markdown("""
 <style>
 html, body, [class*="css"] {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times;
 }
 h1 {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   line-height: 1.5;
 }
 h2 {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
   line-height: 1.5;
 }
 h3 {
-  font-size: 16px;
-  font-style: italic;
+  font-size: 12px;
+  font-style: italic, bold;
   font-weight: bold;
   line-height: 1.5;
 }
 h4 {
-  font-size: 14px;
+  font-size: 10px;
   font-style: italic;
   line-height: 1.5;
 }
 p, li, div {
-  font-size: 12px;
-  font-style: italic;
+  font-size: 10px;
+  font-style: none;
   line-height: 1.3;
 }
 [data-testid="stSidebar"] {
