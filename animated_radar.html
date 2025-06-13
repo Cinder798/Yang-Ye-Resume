@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        html, body, #main {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+<div id="main"></div>
+<script>
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var base = [8, 7, 6, 8, 6, 7];
+    let scale = 1;
+    let direction = 1;
+    function getOption(values) {
+        return {
+            radar: {
+                indicator: [
+                    { name: 'Academic Writing', max: 10 },
+                    { name: 'NLP', max: 10 },
+                    { name: 'Python', max: 10 },
+                    { name: 'Communication', max: 10 },
+                    { name: 'Streamlit', max: 10 },
+                    { name: 'Discourse Analysis', max: 10 }
+                ],
+                radius: '65%',
+                splitLine: { lineStyle: { color: '#ddd' } },
+                axisLine: { lineStyle: { color: '#ccc' } }
+            },
+            series: [{
+                type: 'radar',
+                data: [{
+                    value: values,
+                    areaStyle: { opacity: 0.4 },
+                    lineStyle: { width: 2 },
+                    symbol: 'none'
+                }]
+            }]
+        };
+    }
+    function animate() {
+        if (scale >= 1.15 || scale <= 0.85) direction *= -1;
+        scale += direction * 0.005;
+        let newData = base.map(v => v * scale);
+        myChart.setOption(getOption(newData));
+    }
+
+    myChart.setOption(getOption(base));
+    setInterval(animate, 80);
+</script>
+</body>
+</html>
