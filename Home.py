@@ -27,12 +27,14 @@ with st.expander("🧩 Explanation of the Linguistic Model (中英对照)", expa
 Language = multiple parallel universes  
 Language is subjective  
 Inspired by Grice, Austin, Chomsky, and Lakoff, this thought model maps language onto probability events, where each utterance 'collapses' one possible universe.
+One THE ONE exist over Time
 > 语言的唯一目的 = 沟通  
 语言是主观的、多重宇宙叠加的产物。每一句话都像量子坍缩，选定一个现实。
+无穷中，仅一息尚存，其余皆败于时间
 """)
 
-st.header("📊 Skill Radar – Dynamic Breathing Animation")
-iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html?v=2", height=320)
+from streamlit.components.v1 import iframe
+iframe("https://yourusername.github.io/Yang-Ye-Resume/animated_radar_v6.html", height=130)
 
 st.subheader("☁️ Project Keywords")
 text = "chatbot speech_act CDA pragmatics power emotion politeness cross_culture AI discourse perlocutionary linguistics"
