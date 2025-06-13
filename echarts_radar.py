@@ -11,7 +11,7 @@ st.set_page_config(page_title="Ye Yang Resume", layout="wide")
 
 with st.sidebar:
     image = Image.open("profile.jpg")
-    st.image(image, width=460)
+    st.image(image, width=360)
     st.markdown("""
     ### Ye Yang (Cinder)  
     Master of English Language Studies, UM, Malaysia  
