@@ -87,7 +87,7 @@ with tabs[2]:
 
 with tabs[3]:
     st.header("📊 Skill Radar – Animated")
-    iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html", height=520)
+    iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html", height=320)
 
 with tabs[4]:
     st.header("☁️ Project Keywords")
