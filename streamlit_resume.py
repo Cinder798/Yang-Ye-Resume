@@ -131,4 +131,5 @@ window.onload = function () {
 </script>
 """
 st.components.v1.html(echarts_code, height=520)
-
+from streamlit.components.v1 import iframe
+iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html", height=520)
