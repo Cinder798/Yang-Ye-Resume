@@ -130,6 +130,6 @@ window.onload = function () {
 };
 </script>
 """
-st.components.v1.html(echarts_code, height=520)
+st.components.v1.html(echarts_code, height=320)
 from streamlit.components.v1 import iframe
-iframe("https://yourusername.github.io/yourrepo/animated_radar.html", height=520)
+iframe("https://yourusername.github.io/yourrepo/animated_radar.html", height=320)
