@@ -10,7 +10,7 @@ st.sidebar.markdown("🔍 NLP-focused Researcher & Communicator")
 st.sidebar.markdown("📍 Malaysia | Harbin | Global")
 st.sidebar.markdown("✉️ yangyemishi99@gmail.com")
 st.sidebar.markdown("[LinkedIn](https://linkedin.com/in/yourprofile)")
-st.sidebar.markdown("[My NLP Model]()
+st.sidebar.markdown("[My NLP Model](https://6p8qtwfeqmwsvarblnx67m.streamlit.app/)")
 st.title("🌸 Welcome to Ye Yang's Dynamic Resume")
 st.markdown("_An NLP Research Enthusiast bridging cultures, codes, and cognition._")
 
