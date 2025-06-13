@@ -51,9 +51,9 @@ p, li, div {
 
 st.sidebar.image("profile.jpg", width=100)
 st.sidebar.markdown("# Ye Yang (Cinder)")
-st.sidebar.markdown("Academic BG: MELS, UM, Malaysia")
-st.sidebar.markdown("🔍 Career Objective: NLP-focused Research Assistant")
-st.sidebar.markdown("📍 Germany | Malaysia | Global")
+st.sidebar.markdown("📚 [Academic BG] MELS, UM, Malaysia")
+st.sidebar.markdown("🔍 [Career Objective] NLP-focused Research Assistant")
+st.sidebar.markdown("📍 [Countries] Germany | Malaysia | Global")
 st.sidebar.markdown("✉️ [Contact me] yangyemishi99@gmail.com")
 st.sidebar.markdown("[LinkedIn](https://linkedin.com/in/yourprofile)")
 st.sidebar.markdown("😼[My NLP Model-CC Kitty](https://6p8qtwfeqmwsvarblnx67m.streamlit.app/)")
