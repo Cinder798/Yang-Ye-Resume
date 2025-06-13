@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <style>
-        html, body, #main {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Animated Radar</title>
 </head>
 <body>
-<div id="main"></div>
+<div id="main" style="width: 100%;height:500px;"></div>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <script>
-    var chartDom = document.getElementById('main');
-    var myChart = echarts.init(chartDom);
-    var base = [8, 7, 6, 8, 6, 7];
-    let scale = 1;
-    let direction = 1;
-    function getOption(values) {
-        return {
-            radar: {
-                indicator: [
-                    { name: 'Academic Writing', max: 10 },
-                    { name: 'NLP', max: 10 },
-                    { name: 'Python', max: 10 },
-                    { name: 'Communication', max: 10 },
-                    { name: 'Streamlit', max: 10 },
-                    { name: 'Discourse Analysis', max: 10 }
-                ],
-                radius: '65%',
-                splitLine: { lineStyle: { color: '#ddd' } },
-                axisLine: { lineStyle: { color: '#ccc' } }
-            },
-            series: [{
-                type: 'radar',
-                data: [{
-                    value: values,
-                    areaStyle: { opacity: 0.4 },
-                    lineStyle: { width: 2 },
-                    symbol: 'none'
-                }]
-            }]
-        };
-    }
-    function animate() {
-        if (scale >= 1.15 || scale <= 0.85) direction *= -1;
-        scale += direction * 0.005;
-        let newData = base.map(v => v * scale);
-        myChart.setOption(getOption(newData));
-    }
+var chartDom = document.getElementById('main');
+var myChart = echarts.init(chartDom);
 
-    myChart.setOption(getOption(base));
-    setInterval(animate, 80);
+const indicators = [
+  { name: 'Python', max: 10 },
+  { name: 'NLP', max: 10 },
+  { name: 'Academic Writing', max: 10 },
+  { name: 'Discourse Analysis', max: 10 },
+  { name: 'Streamlit', max: 10 },
+  { name: 'Communication', max: 10 }
+];
+
+const skillStates = [
+  { base: 8, min: 7.5, max: 8.5, step: 0.02, delay: 120 },
+  { base: 9, min: 8.5, max: 9.5, step: 0.015, delay: 200 },
+  { base: 8.7, min: 8.2, max: 9.2, step: 0.012, delay: 170 },
+  { base: 8.3, min: 7.8, max: 8.8, step: 0.018, delay: 140 },
+  { base: 7, min: 6.5, max: 7.5, step: 0.02, delay: 100 },
+  { base: 8.5, min: 8.0, max: 9.0, step: 0.014, delay: 150 }
+];
+
+let current = skillStates.map(s => s.base);
+let directions = skillStates.map(() => 1);
+
+function render() {
+  myChart.setOption({
+    radar: {
+      indicator: indicators
+    },
+    series: [{
+      type: 'radar',
+      data: [
+        {
+          value: current,
+          areaStyle: {}
+        }
+      ]
+    }]
+  });
+}
+
+skillStates.forEach((skill, idx) => {
+  setInterval(() => {
+    current[idx] += directions[idx] * skill.step;
+    if (current[idx] >= skill.max || current[idx] <= skill.min) {
+      directions[idx] *= -1;
+    }
+    render();
+  }, skill.delay);
+});
+
+render();
 </script>
 </body>
 </html>
