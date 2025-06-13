@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit.components.v1 import html
+from streamlit.components.v1 import iframe
 from streamlit_extras.card import card
 from streamlit_timeline import timeline
 from PIL import Image
@@ -86,50 +86,8 @@ with tabs[2]:
     """)
 
 with tabs[3]:
-    st.header("📊 Skill Radar – Animated with ECharts")
-    echarts_code = '''
-    <div id="radar" style="width: 100%;height:500px;"></div>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-    <script>
-    var chartDom = document.getElementById('radar');
-    var myChart = echarts.init(chartDom);
-    var option;
-
-    const base = [8, 7, 6, 8, 6, 7];
-    let direction = 1;
-    let scale = 1;
-
-    function genOption(values) {
-        return {
-            radar: {
-                indicator: [
-                    { name: 'Academic Writing', max: 10 },
-                    { name: 'NLP', max: 10 },
-                    { name: 'Python', max: 10 },
-                    { name: 'Communication', max: 10 },
-                    { name: 'Streamlit', max: 10 },
-                    { name: 'Discourse Analysis', max: 10 }
-                ]
-            },
-            series: [{
-                type: 'radar',
-                data: [{ value: values, areaStyle: {} }]
-            }]
-        };
-    }
-
-    function animate() {
-        if (scale >= 1.15 || scale <= 0.85) direction *= -1;
-        scale += direction * 0.005;
-        const newData = base.map(x => x * scale);
-        myChart.setOption(genOption(newData));
-    }
-
-    myChart.setOption(genOption(base));
-    setInterval(animate, 80);
-    </script>
-    '''
-    html(echarts_code, height=520)
+    st.header("📊 Skill Radar – Animated")
+    iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html", height=520)
 
 with tabs[4]:
     st.header("☁️ Project Keywords")
