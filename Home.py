@@ -74,15 +74,16 @@ st.markdown("""
 st.markdown("### 🧠 My Comprehension of Linguistics")
 st.image("My Comprehension of Linguistics.jpg", caption="A model connecting linguistic meaning, probability, and communication", use_column_width=True)
 
-st.markdown("### 📊 Skill Radar")
+st.markdown("### 🧱 Skills & Projects")
 col1, col2 = st.columns(2)
 with col1:
-    from streamlit.components.v1 import iframe
-    iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar_v5.html?v=5", height=420)
+    st.markdown("### 📊 Skill Radar")
+    iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar_v5.html", height=520)
 with col2:
-    st.markdown("### ☁️ Project Keywords")
+    st.markdown("### ☁️ Project")
+    st. markdown("Emotional AI Model--CC Kitty \nhttps://6p8qtwfeqmwsvarblnx67m.streamlit.app/")
     text = "chatbot speech_act CDA pragmatics power emotion politeness cross_culture AI discourse perlocutionary linguistics"
-    wc = WordCloud(width=600, height=420, background_color='white').generate(text)
+    wc = WordCloud(width=300, height=420, background_color='white').generate(text)
     st.image(wc.to_array(), use_column_width=True)
 
 st.markdown("---")
