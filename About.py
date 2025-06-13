@@ -93,5 +93,5 @@ fig.update_layout(polar=dict(radialaxis=dict(visible=True, range=[0,10])), showl
 st.plotly_chart(fig, use_container_width=True)
 st.subheader("☁️ Project Keywords")
 text = "chatbot speech_act CDA pragmatics power emotion politeness cross_culture AI discourse perlocutionary linguistics"
-wc = WordCloud(width=800, height=300, background_color='white').generate(text)
+wc = WordCloud(width=400, height=30, background_color='white').generate(text)
 st.image(wc.to_array(), use_column_width=True)
