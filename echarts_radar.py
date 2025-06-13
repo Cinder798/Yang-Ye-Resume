@@ -6,7 +6,9 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud
 import json
+
 st.set_page_config(page_title="Ye Yang Resume", layout="wide")
+
 with st.sidebar:
     image = Image.open("profile.jpg")
     st.image(image, width=160)
@@ -19,14 +21,18 @@ with st.sidebar:
     🔗 [LinkedIn](https://linkedin.com/in/yourprofile)  
     🐱 [My NLP Model – CC Kitty](https://yourlink.to/cckitty)
     """)
+
 tabs = st.tabs(["🏠 Home", "👑 Education & Work", "💻 Projects", "📊 Skills", "☁️ Keywords", "📬 Contact"])
+
 with tabs[0]:
     st.title("🌸 Welcome to Ye Yang's Dynamic Resume")
     st.write("An NLP Research Enthusiast bridging cultures, codes, and cognition.")
     st.header("🧠 My Comprehension of Linguistics")
     st.image("My Comprehension of Linguistics.jpg", caption="My comprehension of Linguistics", use_container_width=True)
+
 with tabs[1]:
     st.header("👑 Education & Work")
+
     with st.container():
         st.subheader("⏳ Timeline View")
         timeline_data = {
@@ -70,6 +76,7 @@ with tabs[1]:
             ]
         }
         timeline(json.dumps(timeline_data), height=600)
+
 with tabs[2]:
     st.header("💻 Projects")
     st.markdown("""
@@ -77,6 +84,7 @@ with tabs[2]:
     - **Research Thesis** – Fieldwork + discourse coding + CDA on Chinese food persuasion  
     - **Annotation Tool (in progress)** – JSON-based Streamlit tool for perlocution outcome tagging
     """)
+
 with tabs[3]:
     st.header("📊 Skill Radar – Animated with ECharts")
     echarts_code = '''
@@ -86,40 +94,43 @@ with tabs[3]:
     var chartDom = document.getElementById('radar');
     var myChart = echarts.init(chartDom);
     var option;
-    let value = 1;
-    let direction = 0.05;
+
     const base = [8, 7, 6, 8, 6, 7];
-    option = {
-      title: { text: '' },
-      radar: {
-        indicator: [
-          { name: 'Academic Writing', max: 10 },
-          { name: 'NLP', max: 10 },
-          { name: 'Python', max: 10 },
-          { name: 'Communication', max: 10 },
-          { name: 'Streamlit', max: 10 },
-          { name: 'Discourse Analysis', max: 10 }
-        ]
-      },
-      series: [{
-        type: 'radar',
-        data: [
-          { value: base.map(v => v), areaStyle: {} }
-        ]
-      }]
-    };
-    function update() {
-      value += direction;
-      if (value >= 1.2 || value <= 0.8) direction *= -1;
-      let newData = base.map(v => v * value);
-      option.series[0].data[0].value = newData;
-      myChart.setOption(option);
+    let direction = 1;
+    let scale = 1;
+
+    function genOption(values) {
+        return {
+            radar: {
+                indicator: [
+                    { name: 'Academic Writing', max: 10 },
+                    { name: 'NLP', max: 10 },
+                    { name: 'Python', max: 10 },
+                    { name: 'Communication', max: 10 },
+                    { name: 'Streamlit', max: 10 },
+                    { name: 'Discourse Analysis', max: 10 }
+                ]
+            },
+            series: [{
+                type: 'radar',
+                data: [{ value: values, areaStyle: {} }]
+            }]
+        };
     }
-    setInterval(update, 100);
-    myChart.setOption(option);
+
+    function animate() {
+        if (scale >= 1.15 || scale <= 0.85) direction *= -1;
+        scale += direction * 0.005;
+        const newData = base.map(x => x * scale);
+        myChart.setOption(genOption(newData));
+    }
+
+    myChart.setOption(genOption(base));
+    setInterval(animate, 80);
     </script>
     '''
     html(echarts_code, height=520)
+
 with tabs[4]:
     st.header("☁️ Project Keywords")
     keywords = "emotion power speech_act chatbot pragmatics CDA politeness perlocutionary cross_culture discourse AI linguistics"
@@ -128,6 +139,7 @@ with tabs[4]:
     ax_wc.imshow(wordcloud, interpolation='bilinear')
     ax_wc.axis("off")
     st.pyplot(fig_wc)
+
 with tabs[5]:
     st.header("📬 Let’s Connect")
     st.write("I'm always open to research collaborations, tech-linguistic projects, or academic conversations. Feel free to reach out!")
