@@ -5,3 +5,6 @@ plotly
 wordcloud
 Pillow
 numpy
+streamlit-echarts
+streamlit-timeline
+streamlit-extras
