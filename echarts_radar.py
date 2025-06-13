@@ -1,88 +1,135 @@
 import streamlit as st
-import streamlit.components.v1 as components
+from streamlit.components.v1 import html
+from streamlit_extras.card import card
+from streamlit_timeline import timeline
+from PIL import Image
+import matplotlib.pyplot as plt
 from wordcloud import WordCloud
-st.set_page_config(page_title="Radar Skill Animation", layout="wide")
-st.sidebar.image("profile.jpg", width=150)
-st.sidebar.markdown("## Ye Yang (Cinder)")
-st.sidebar.markdown("🔍 NLP-focused Researcher & Communicator")
-st.sidebar.markdown("📍 Malaysia | Harbin | Global")
-st.sidebar.markdown("✉️ yangyemishi99@gmail.com")
-st.sidebar.markdown("[LinkedIn](https://linkedin.com/in/yourprofile)")
-st.title("🌸 Welcome to Ye Yang's Dynamic Resume")
-st.markdown("_An NLP Research Enthusiast bridging cultures, codes, and cognition._")
-st.subheader("🧠 My Comprehension of Linguistics")
-st.image("My Comprehension of Linguistics.jpg", caption="A model connecting linguistic meaning, probability, and communication", use_column_width=True)
-with st.expander("🧩 Explanation of the Linguistic Model (中英对照)", expanded=False):
+import json
+st.set_page_config(page_title="Ye Yang Resume", layout="wide")
+with st.sidebar:
+    image = Image.open("profile.jpg")
+    st.image(image, width=160)
     st.markdown("""
-**Only Aim of Languages = To COMMUNICATE**  
-Language = multiple parallel universes  
-Language is subjective  
-Inspired by Grice, Austin, Chomsky, and Lakoff, this thought model maps language onto probability events, where each utterance 'collapses' one possible universe.  
-> 语言的唯一目的 = 沟通  
-语言是主观的、多重宇宙叠加的产物。每一句话都像量子坍缩，选定一个现实。
-""")
-html_string = """
-<!DOCTYPE html>
-<html style="height:100%">
-<head>
-  <meta charset="UTF-8">
-  <title>Radar Chart</title>
-</head>
-<body style="height:100%;margin:0">
-<div id="radar" style="height:100%"></div>
-<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
-<script>
-  var chart = echarts.init(document.getElementById('radar'));
-  var option = {
-    title: { text: 'Skill Radar (Animated)', textStyle: { fontSize: 20 }},
-    tooltip: {},
-    radar: {
-      indicator: [
-        { name: 'Python', max: 10 },
-        { name: 'NLP', max: 10 },
-        { name: 'Academic Writing', max: 10 },
-        { name: 'Discourse Analysis', max: 10 },
-        { name: 'Streamlit', max: 10 },
-        { name: 'Communication', max: 10 }
-      ],
-      shape: 'circle',
-      splitNumber: 5,
-      splitLine: {
-        lineStyle: {
-          color: ['rgba(114,172,209,0.1)', 'rgba(114,172,209,0.2)', 'rgba(114,172,209,0.4)', 'rgba(114,172,209,0.6)', 'rgba(114,172,209,0.8)', 'rgba(114,172,209,1)'].reverse()
+    ### Ye Yang (Cinder)  
+    Master of English Language Studies, UM, Malaysia  
+    🔍 NLP-focused Researcher & Communicator  
+    📍 Malaysia | Harbin | Global  
+    ✉️ [yangyemishi99@gmail.com](mailto:yangyemishi99@gmail.com)  
+    🔗 [LinkedIn](https://linkedin.com/in/yourprofile)  
+    🐱 [My NLP Model – CC Kitty](https://yourlink.to/cckitty)
+    """)
+tabs = st.tabs(["🏠 Home", "👑 Education & Work", "💻 Projects", "📊 Skills", "☁️ Keywords", "📬 Contact"])
+with tabs[0]:
+    st.title("🌸 Welcome to Ye Yang's Dynamic Resume")
+    st.write("An NLP Research Enthusiast bridging cultures, codes, and cognition.")
+    st.header("🧠 My Comprehension of Linguistics")
+    st.image("My Comprehension of Linguistics.jpg", caption="My comprehension of Linguistics", use_container_width=True)
+with tabs[1]:
+    st.header("👑 Education & Work")
+    with st.container():
+        st.subheader("⏳ Timeline View")
+        timeline_data = {
+            "title": {"text": {"headline": "Ye Yang's Education & Experience Timeline"}},
+            "events": [
+                {
+                    "media": {"url": ""},
+                    "start_date": {"year": "2023", "month": "9"},
+                    "end_date": {"year": "2025", "month": "7"},
+                    "text": {
+                        "headline": "Master of English Language Studies",
+                        "text": "University of Malaya, Malaysia<br>CGPA: 3.53<br>Thesis: Analysing Power Delegation in Food Persuasion"
+                    }
+                },
+                {
+                    "media": {"url": ""},
+                    "start_date": {"year": "2017", "month": "9"},
+                    "end_date": {"year": "2021", "month": "6"},
+                    "text": {
+                        "headline": "BA in English",
+                        "text": "Xi’an Shiyou University, China<br>Average: 87/100"
+                    }
+                },
+                {
+                    "media": {"url": ""},
+                    "start_date": {"year": "2024", "month": "3"},
+                    "end_date": {"year": "2024", "month": "7"},
+                    "text": {
+                        "headline": "Content Intern",
+                        "text": "ABC Communications Ltd., Malaysia<br>Duties: Localisation, Sentiment Analysis<br>Outcomes: +18% engagement"
+                    }
+                },
+                {
+                    "media": {"url": ""},
+                    "start_date": {"year": "2020", "month": "7"},
+                    "text": {
+                        "headline": "Summer School",
+                        "text": "University of Birmingham (UK)"
+                    }
+                }
+            ]
         }
+        timeline(json.dumps(timeline_data), height=600)
+with tabs[2]:
+    st.header("💻 Projects")
+    st.markdown("""
+    - **CC Kitty: Emotional Book of Answers** – Bilingual emotional support app built using Streamlit + emotion keyword analysis  
+    - **Research Thesis** – Fieldwork + discourse coding + CDA on Chinese food persuasion  
+    - **Annotation Tool (in progress)** – JSON-based Streamlit tool for perlocution outcome tagging
+    """)
+with tabs[3]:
+    st.header("📊 Skill Radar – Animated with ECharts")
+    echarts_code = '''
+    <div id="radar" style="width: 100%;height:500px;"></div>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script>
+    var chartDom = document.getElementById('radar');
+    var myChart = echarts.init(chartDom);
+    var option;
+    let value = 1;
+    let direction = 0.05;
+    const base = [8, 7, 6, 8, 6, 7];
+    option = {
+      title: { text: '' },
+      radar: {
+        indicator: [
+          { name: 'Academic Writing', max: 10 },
+          { name: 'NLP', max: 10 },
+          { name: 'Python', max: 10 },
+          { name: 'Communication', max: 10 },
+          { name: 'Streamlit', max: 10 },
+          { name: 'Discourse Analysis', max: 10 }
+        ]
       },
-      splitArea: { areaStyle: { color: ['#f5f5f5', '#fff'] }},
-      axisLine: { lineStyle: { color: 'gray' }}
-    },
-    series: [{
-      name: 'Skill Level',
-      type: 'radar',
-      data: [{
-        value: [6, 7, 8, 8, 7, 9],
-        name: 'Cinder',
-        areaStyle: { opacity: 0.3 }
-      }],
-      animationDuration: 1000,
-      animationEasing: 'elasticOut'
-    }]
-  };
-  function animateRadar() {
-    let base = [6, 7, 8, 8, 7, 9];
-    setInterval(() => {
-      const variation = base.map(v => v + (Math.random() * 0.2 - 0.1));
-      option.series[0].data[0].value = variation;
-      chart.setOption(option);
-    }, 1000);
-  }
-  chart.setOption(option);
-  animateRadar();
-</script>
-</body>
-</html>
-"""
-components.html(html_string, height=600)
-st.subheader("☁️ Project Keywords")
-text = "chatbot speech_act CDA pragmatics power emotion politeness cross_culture AI discourse perlocutionary linguistics"
-wc = WordCloud(width=800, height=300, background_color='white').generate(text)
-st.image(wc.to_array(), use_column_width=True)
+      series: [{
+        type: 'radar',
+        data: [
+          { value: base.map(v => v), areaStyle: {} }
+        ]
+      }]
+    };
+    function update() {
+      value += direction;
+      if (value >= 1.2 || value <= 0.8) direction *= -1;
+      let newData = base.map(v => v * value);
+      option.series[0].data[0].value = newData;
+      myChart.setOption(option);
+    }
+    setInterval(update, 100);
+    myChart.setOption(option);
+    </script>
+    '''
+    html(echarts_code, height=520)
+with tabs[4]:
+    st.header("☁️ Project Keywords")
+    keywords = "emotion power speech_act chatbot pragmatics CDA politeness perlocutionary cross_culture discourse AI linguistics"
+    wordcloud = WordCloud(width=800, height=300, background_color='white').generate(keywords)
+    fig_wc, ax_wc = plt.subplots()
+    ax_wc.imshow(wordcloud, interpolation='bilinear')
+    ax_wc.axis("off")
+    st.pyplot(fig_wc)
+with tabs[5]:
+    st.header("📬 Let’s Connect")
+    st.write("I'm always open to research collaborations, tech-linguistic projects, or academic conversations. Feel free to reach out!")
+    st.markdown("✉️ Email: [yangyemishi99@gmail.com](mailto:yangyemishi99@gmail.com)")
+    st.markdown("🔗 LinkedIn: [linkedin.com/in/yourprofile](https://linkedin.com/in/yourprofile)")
