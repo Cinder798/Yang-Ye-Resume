@@ -32,7 +32,7 @@ Inspired by Grice, Austin, Chomsky, and Lakoff, this thought model maps language
 """)
 
 st.header("📊 Skill Radar – Dynamic Breathing Animation")
-iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html?v=2", height=520)
+iframe("https://cinder798.github.io/Yang-Ye-Resume/animated_radar.html?v=2", height=320)
 
 st.subheader("☁️ Project Keywords")
 text = "chatbot speech_act CDA pragmatics power emotion politeness cross_culture AI discourse perlocutionary linguistics"
