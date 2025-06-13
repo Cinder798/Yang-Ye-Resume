@@ -5,10 +5,12 @@ from PIL import Image
 st.set_page_config(page_title="Home", layout="wide")
 st.sidebar.image("profile.jpg", width=150)
 st.sidebar.markdown("## Ye Yang (Cinder)")
+st.sidebar.markdown("Master of English Language Studies, UM, Malaysia")
 st.sidebar.markdown("🔍 NLP-focused Researcher & Communicator")
 st.sidebar.markdown("📍 Malaysia | Harbin | Global")
 st.sidebar.markdown("✉️ yangyemishi99@gmail.com")
 st.sidebar.markdown("[LinkedIn](https://linkedin.com/in/yourprofile)")
+st.sidebar.markdown("[My NLP Model]()
 st.title("🌸 Welcome to Ye Yang's Dynamic Resume")
 st.markdown("_An NLP Research Enthusiast bridging cultures, codes, and cognition._")
 
